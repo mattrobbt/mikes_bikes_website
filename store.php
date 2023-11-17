@@ -1,54 +1,65 @@
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
-<link rel="stylesheet" type="text/css" href="style.css">
 
-<body>
-<nav>
-<img id="logo" src="mikesbikes.png" width="10%" height="auto">
+<?php include("head.php");  ?>
 
-<button id="shoppingcart"><img src="shoppingcart.png" width="10%" height="auto"></button>
-<ul>
-  <li><a class="active" href="index.php">Home</a></li>
-  <li><a href="store.php">Store</a></li>
-  <li><a href="#contact">Repairs</a></li>
-  <li><a href="#about">Contact Us</a></li>
-</ul>
-</nav>
-<div>
+
+<div class="options">
+<form action="" method="post" id="searchform2">
+<h1>Sort By:</h1>
+        <input type="radio" name="sort" value="popular" > Popular </input></br>
+        <input type="radio" name="sort" value="hprice"> High Price </input></br>
+        <input type="radio" name="sort" value="lprice"> Low Price </input></br>
+        
+        <input type="submit" id="searchsubmit2" class="search-submit" value="Search" name="chkdata" />
+</form>
+</div>
 
 <?php
-$servername = "silva.computing.dundee.ac.uk";
-$username = "19ac3u01";
-$password = "ac33b2";
-$dbname = "19ac3d01";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-
-$sql = "SELECT * FROM STOCK";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table><tr><th>Brand</th><th>Model</th><th>Price</th><th>Quantity</th></tr>";
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
+    
         
-        echo "<tr><td>".$row["Brand"]."</td><td>".$row["Model"]."</td><td> ".$row["Price"]."</td><td>".$row["Quantity"]. "</td>";
-        echo '<td><img class="bikeimage" src="'.$row['image'].'"></td></tr>';
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
+        if($_POST['sort'] == "popular"){
+            $_POST['sort'] = "SELECT * FROM STOCK";   
+            call_database();
+            
 }
-$conn->close();
-?>
-</div>
-</body>
+        else if($_POST['sort'] == "hprice"){
+            $_POST['sort'] = "SELECT * FROM STOCK ORDER By Price DESC";  
+            call_database(); 
+}
+        else if($_POST['sort'] == "lprice"){
+            $_POST['sort'] = "SELECT * FROM STOCK ORDER By Price ASC";  
+            call_database(); 
+}
+        else{
+            $_POST['sort'] = "SELECT * FROM STOCK";
+            call_database();
+        }
+
+        
+
+     
+function call_database(){  
+        include ("includes/dbconnect.php");  
+       
+        session_start();      
+            $sql = $_POST['sort'];
+            $result = $conn->query($sql);  
+            if ($result->num_rows > 0) {    
+                while($row = $result->fetch_assoc()) {                    
+                    echo "<a class='bikebutton' href='productpage.php?clicked=".$row['ProductCode']."'>
+                    <img class='bikeimage' src=".$row['image'].">
+                    <p class='queryobject'>
+                    ".$row["Brand"]." ".$row["Model"].
+                    "  </br>£".$row["Price"].
+                    "</p></a>";
+                    $_SESSION['clicked'] = $row["ProductCode"];   
+                }
+            }
+}
+            
+    $conn->close();
+      ?>
+</body> 
+
 </html>
 

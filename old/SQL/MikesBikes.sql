@@ -53,7 +53,7 @@ CREATE TABLE `Employee` (
     `LastName` VARCHAR(60) NOT NULL,
     `PhoneNum` VARCHAR(15) NOT NULL,
     `Address` VARCHAR(255) NOT NULL,
-    `EmployeeType` varchar(75) NOT NULL,
+    `EmployeeType` varchar(15) NOT NULL,
     `ContractedHrs` int(10) NOT NULL,
     `PayCode` int(10) NOT NULL,
     `BranchID` int(10) NOT NULL,
