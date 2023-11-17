@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "SF Mono";
+  font-weight: 400;
+  src: url("https://sf.abarba.me/SFMono-Regular.otf");
+}
+ul {
+  list-style-type: none;
+  margin-left: 15%;
+  margin-top: -3%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #e6e5e3;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #d4d3d2;
+}
+body {
+     background-color: #e6e5e3
+    }
+#shoppingcart{
+    background-color: #e6e5e3;
+    border: none;
+    width: 50%;
+    height: auto;
+    float: right;
+    margin-top: 1%;
+    margin-right: -20%;
+    
+    }
+#shoppingcart:hover{
+        background-color: #d4d3d2;
+    }
+    #logo {
+        margin-top: 1%;
+        margin-left: 2%;
+}
+    
+#main{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+    }
+#main:hover{
+        
+    }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin:0px; 
+    font-family: "SF Mono";
+    padding:0px;
+}
+    
+.maintext {
+  position: absolute;
+  top: 55%;
+  left: 22%;
+  transform: translate(-50%, -50%);
+  
+  font-size: 350%;
+    
+}
+.bikeimage{
+    width: 30%;
+    height: auto;
+    
+    
+}
